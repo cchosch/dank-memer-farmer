@@ -1,6 +1,7 @@
 import requests
 import json
 import time
+import random
 
 API_ENDPOINT = "https://discord.com/api/v9"
 
@@ -17,19 +18,19 @@ def update_glob_vars():
 
 def main():
     print(CHANNEL_ID)
-    auth_header = {"authorization": "OTM4NjY0MDA2MzM0NDQzNTMx.Yftl5A.498luIYz2NwEVUke5ACAFxYlhr8"}
+    auth_header = {"authorization": TOKEN}
     fishing = {"content":"pls fish"}
     hunting = {"content":"pls hunt"}
     last_fish = time.time()-40
-    last_hunt = time.time()-40
+    last_hunt = time.time()-34
     channel_url = API_ENDPOINT+f"/channels/{CHANNEL_ID}/messages"
     while True:
         if time.time()-last_fish > 40:
-            requests.post(channel_url,headers=auth_header,data=fishing)
-            last_fish = time.time()
+            print(requests.post(channel_url,headers=auth_header,data=fishing))
+            last_fish = time.time()+random.uniform(0.1,0.3)
         if time.time()-last_hunt > 40:
-            requests.post(channel_url,headers=auth_header,data=hunting)
-            last_hunt = time.time()
+            print(requests.post(channel_url,headers=auth_header,data=hunting))
+            last_hunt = time.time()+random.uniform(0.1,0.3)
             
     
 if __name__ == "__main__":
