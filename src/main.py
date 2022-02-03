@@ -6,9 +6,23 @@ import random
 API_ENDPOINT = "https://discord.com/api/v9"
 
 def read_config():
-    theconfigfile = open("config.json")
-    theconfig = json.load(theconfigfile)
-    theconfigfile.close()
+    try:
+        theconfigfile = open("config.json")
+        theconfig = json.load(theconfigfile)
+        theconfigfile.close()
+    except FileNotFoundError:
+        print("FATAL ERROR: NO FILE NAMED \"config.json\"")
+        quit()
+    try:
+        theconfig["token"]
+    except KeyError:
+        print("FATAL ERROR: KEY \"token\" NOT FOUND")
+        quit()
+    try:
+        theconfig["channel-id"]
+    except KeyError:
+        print("FATAL ERROR: KEY \"channel-id\" NOT FOUND")
+        quit()
     return theconfig["token"], theconfig["channel-id"]
 
 TOKEN, CHANNEL_ID = read_config()
