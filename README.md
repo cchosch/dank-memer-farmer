@@ -15,7 +15,7 @@ Then, create a `config.json` in the root directory of this project and put your 
 ```json
 {
   "token": "DISCORD ACCOUNT TOKEN",
-  "channelid": "CHANNEL ID"
+  "channel-id": "CHANNEL ID"
 }
 ```
 
